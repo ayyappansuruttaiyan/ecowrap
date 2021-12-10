@@ -1,6 +1,8 @@
-const bcrypt = require('bcrypt')
-const mongoose = require('mongoose')
-const express = require('express')
+import userRouter from './routers/userRouter.js'
+import bcrypt from 'bcrypt'
+import mongoose from 'mongoose'
+import express from 'express'
+
 const app = express()
 
 //database
@@ -8,18 +10,7 @@ mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/amazona', ()=>{
     console.log('database connected')
 })
 
-const User = mongoose.model('Cat',{
-    email: {type: String, required: true, unique: true},
-    password: {type: String, required: true}
-})
-const users = [
-    {
-        email:'ayyappan.sjec@gmail.com',
-        password: bcrypt.hashSync( '1234',8 ),
-        is_admin: true,
-        time: Date.now
-    }
-]
+app.use('/api/users', userRouter);
 //endpoints
 app.get('/', (req, res) => {
     res.send('<ul><li>welcome</li></ul>')

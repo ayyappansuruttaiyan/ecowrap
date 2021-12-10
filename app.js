@@ -4,9 +4,10 @@ import mongoose from 'mongoose'
 import express from 'express'
 
 const app = express()
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 //database
-mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/amazona', ()=>{
+mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/ecowrap', ()=>{
     console.log('database connected')
 })
 

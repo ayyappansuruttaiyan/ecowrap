@@ -4,7 +4,7 @@ const express = require('express')
 const app = express()
 
 //database
-mongoose.connect('mongodb+srv://ayyappan:Ayyappan@4031@web-project.hmjwx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', ()=>{
+mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/amazona', ()=>{
     console.log('database connected')
 })
 

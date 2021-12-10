@@ -1,8 +1,17 @@
 const bcrypt = require('bcrypt')
+const mongoose = require('mongoose')
 const express = require('express')
 const app = express()
 
+//database
+mongoose.connect('mongodb+srv://ayyappan:Ayyappan@4031@web-project.hmjwx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', ()=>{
+    console.log('database connected')
+})
 
+const User = mongoose.model('Cat',{
+    email: {type: String, required: true, unique: true},
+    password: {type: String, required: true}
+})
 const users = [
     {
         email:'ayyappan.sjec@gmail.com',
